@@ -47,7 +47,7 @@ export class LoginPage extends React.Component<Props, State> {
 
   handleSubmit(event: FormEvent) {
     event.preventDefault();
-
+    // TODO: implementation of the login logic
     // debug
     console.log("Username: " + this.state.email);
     console.log("Passwort: " + this.state.password);
@@ -59,7 +59,10 @@ export class LoginPage extends React.Component<Props, State> {
 
   render() {
     return (
-      <form onSubmit={(event) => this.handleSubmit(event)}>
+      <form
+        className="login-form"
+        onSubmit={(event) => this.handleSubmit(event)}
+      >
         <h2 className="title">Anmelden</h2>
         <div className="input-field">
           <i className="form-icons">

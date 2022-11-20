@@ -9,16 +9,19 @@ interface State {}
 class AuthenticationPage extends React.Component<Props, State> {
   render() {
     return (
-      <div className="container">
-        <div className="forms-container">
-          <div className="login-container">
-            <LoginPage />;
-          </div>
-          <div className="registration-container">
-            <RegistrationPage></RegistrationPage>
+      <main>
+        <div className="container">
+          <aside>
+            <div className="content-container">sdfsfdsf</div>
+          </aside>
+
+          <div className="forms-container">
+            <div className="login-container">
+              <LoginPage />
+            </div>
           </div>
         </div>
-      </div>
+      </main>
     );
   }
 }

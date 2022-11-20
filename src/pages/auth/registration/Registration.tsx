@@ -53,9 +53,10 @@ class RegistrationPage extends React.Component<Props, State> {
 
   handleSubmit(event: FormEvent) {
     event.preventDefault();
-
+    // TODO: implementation of the registration logic
     // debug
     console.log("Username: " + this.state.username);
+    console.log("Username: " + this.state.email);
     console.log("Passwort: " + this.state.password);
     this.setState({
       username: "",
@@ -65,7 +66,10 @@ class RegistrationPage extends React.Component<Props, State> {
 
   render() {
     return (
-      <form onSubmit={(event) => this.handleSubmit(event)}>
+      <form
+        className="registration-form"
+        onSubmit={(event) => this.handleSubmit(event)}
+      >
         <h2 className="title">Registrieren</h2>
         <div className="input-field">
           <i className="form-icons">
