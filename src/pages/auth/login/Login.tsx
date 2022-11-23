@@ -90,6 +90,9 @@ export class LoginPage extends React.Component<Props, State> {
         <button className="form-button" type="submit">
           Login
         </button>
+        <p id="error-message">Das Password oder die Email ist falsch.</p>
+
+        
       </form>
     );
   }
