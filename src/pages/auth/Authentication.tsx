@@ -1,14 +1,25 @@
+import React, { useEffect, useState } from "react";
 import { faApple, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
 import LoginPage from "./login/Login";
 import "./style/authentication.css";
+import RegistrationModal from "./registration/Registration";
 
 interface IAuthPageProps {}
 interface IAuthPageState {}
 
 const AuthenticationPage: React.FunctionComponent<IAuthPageProps> = (props) => {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleShowModal = () => {
+    setShowModal(true);
+  };
+
+  const handleHideModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <main>
       <div className="container">
@@ -28,7 +39,7 @@ const AuthenticationPage: React.FunctionComponent<IAuthPageProps> = (props) => {
               <div className="divider">ODER</div>
               <p id="reg-p">Registrieren mit Email, Apple oder Google</p>
               <div className="reg-buttons-container">
-                <button className="reg-button">
+                <button className="reg-button" onClick={handleShowModal}>
                   <FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon>
                 </button>
                 <button className="reg-button">
@@ -40,6 +51,10 @@ const AuthenticationPage: React.FunctionComponent<IAuthPageProps> = (props) => {
               </div>
             </div>
           </div>
+          <RegistrationModal
+            show={showModal}
+            handleClose={handleHideModal}
+          ></RegistrationModal>
         </div>
       </div>
     </main>

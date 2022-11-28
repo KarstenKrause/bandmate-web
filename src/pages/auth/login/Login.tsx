@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import RegistrationModal from "../registration/Registration";
 
 const LoginPage: React.FunctionComponent = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  
 
   const handleChangeEmailInput = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -23,18 +25,10 @@ const LoginPage: React.FunctionComponent = () => {
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // TODO: implementation of the login logic
-    // debug
-    /*
-    console.log("Username: " + email);
-    console.log("Passwort: " + password);
-    console.log(
-      "Beide Inputs erfolgreich validiert?: " + validateForm(email, password)
-    );
-    */
 
-    validateForm(email, password)
+    validEmail(email) && validPassword(password)
       ? setErrorMessage("")
-      : setErrorMessage("Email oder Passwort ist falsch");
+      : setErrorMessage("Das Passwort oder die Email ist falsch");
 
     resetStates();
   };
@@ -44,13 +38,15 @@ const LoginPage: React.FunctionComponent = () => {
     setPassword("");
   };
 
-  const validateForm = (emailInput: string, passwordInput: string): boolean => {
-    const emailValide: RegExp =
+  const validEmail = (emailInput: string): boolean => {
+    const emailRegExp: RegExp =
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g;
+    return emailRegExp.test(emailInput);
+  };
 
-    const passwordValide: RegExp = /^[a-zA-Z0-9]{6,}$/g;
-
-    return emailValide.test(emailInput) && passwordValide.test(passwordInput);
+  const validPassword = (passwordInput: string): boolean => {
+    const passwordRedExp: RegExp = /^[a-zA-Z0-9]{6,}$/g;
+    return passwordRedExp.test(passwordInput);
   };
 
   return (

@@ -13,7 +13,6 @@ const App: React.FunctionComponent<IApplicationProps> = (props) => {
       <Routes>
         <Route path="/home" element={<HomePage />} />
         <Route path="/" element={<AuthenticationPage />} />
-        <Route path="/registration" element={<RegistrationPage />} />
       </Routes>
     </BrowserRouter>
   );
