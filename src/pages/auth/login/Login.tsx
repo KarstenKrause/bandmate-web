@@ -2,13 +2,11 @@ import React, { useState } from "react";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import RegistrationModal from "../registration/Registration";
 
 const LoginPage: React.FunctionComponent = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  
 
   const handleChangeEmailInput = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -50,8 +48,8 @@ const LoginPage: React.FunctionComponent = () => {
   };
 
   return (
-    <form className="login-form" onSubmit={onSubmit}>
-      <h2 className="title">Anmelden</h2>
+    <form onSubmit={onSubmit}>
+      
       <div className="input-field">
         <i className="form-icons">
           <FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon>
@@ -78,7 +76,7 @@ const LoginPage: React.FunctionComponent = () => {
         ></input>
       </div>
       <button className="form-button" type="submit">
-        Login
+        Anmelden
       </button>
       <p id="error-message">{errorMessage}</p>
     </form>
