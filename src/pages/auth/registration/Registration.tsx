@@ -3,11 +3,13 @@ import { faEnvelope, faUser } from "@fortawesome/free-solid-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Modal } from "react-bootstrap";
+import { TailSpin } from "react-loader-spinner";
 
 interface RegistrationModalProps {
   show: boolean | undefined;
-  handleClose?: () => void;
+  handleClose: () => void;
 }
+
 
 const RegistrationModal: React.FunctionComponent<RegistrationModalProps> = (
   props
@@ -16,6 +18,7 @@ const RegistrationModal: React.FunctionComponent<RegistrationModalProps> = (
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChangeUsernameInput = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -35,12 +38,19 @@ const RegistrationModal: React.FunctionComponent<RegistrationModalProps> = (
     setPassword(event.target.value);
   };
 
+  
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // TODO: implementation of the registration logic
-    console.log("Username: " + username);
-    console.log("Email: " + email);
-    console.log("Password: " + password);
+
+    setLoading(true);
+    setTimeout(() => {
+      console.log("Username: " + username);
+      console.log("Email: " + email);
+      console.log("Password: " + password);
+      setLoading(false);
+      props.handleClose();
+    }, 3000);
 
     resetStates();
   };
@@ -51,17 +61,42 @@ const RegistrationModal: React.FunctionComponent<RegistrationModalProps> = (
     setPassword("");
   };
 
+  let regButton;
+
+  if (!loading) {
+    regButton = (
+      <button className="form-button" type="submit">
+        Registrieren
+      </button>
+    );
+  } else {
+    regButton = (
+      <div className="form-button">
+        <TailSpin
+          height="25"
+          width="25"
+          color="white"
+          ariaLabel="tail-spin-loading"
+          radius="1"
+          wrapperStyle={{}}
+          wrapperClass="spinner"
+          visible={loading}
+        />
+      </div>
+    );
+  }
+
+  
   return (
     <>
       <Modal
         show={props.show}
         onHide={props.handleClose}
-        animation={false}
+        animation={true}
         id="modal"
       >
         <Modal.Header closeButton>
           <Modal.Title id="reg-modal-title">Registrieren</Modal.Title>
-          
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={onSubmit}>
@@ -105,9 +140,7 @@ const RegistrationModal: React.FunctionComponent<RegistrationModalProps> = (
               ></input>
             </div>
 
-            <button className="form-button" type="submit">
-              Registrieren
-            </button>
+            {regButton}
             <p id="error-message">{errorMessage}</p>
           </form>
         </Modal.Body>

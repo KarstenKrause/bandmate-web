@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { TailSpin } from "react-loader-spinner";
 
 const LoginPage: React.FunctionComponent = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleChangeEmailInput = (
@@ -23,6 +25,15 @@ const LoginPage: React.FunctionComponent = () => {
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // TODO: implementation of the login logic
+
+    if(validEmail(email) && validPassword(password)) {
+      setLoading(true);
+      setTimeout(() => {
+        console.log("Email: " + email);
+        console.log("Password: " + password);
+        setLoading(false);
+      }, 3000);
+    }
 
     validEmail(email) && validPassword(password)
       ? setErrorMessage("")
@@ -46,6 +57,31 @@ const LoginPage: React.FunctionComponent = () => {
     const passwordRedExp: RegExp = /^[a-zA-Z0-9]{6,}$/g;
     return passwordRedExp.test(passwordInput);
   };
+
+  let loginButton;
+
+  if (!loading) {
+    loginButton = (
+      <button className="form-button" type="submit">
+        Anmelden
+      </button>
+    );
+  } else {
+    loginButton = (
+      <div className="form-button">
+        <TailSpin
+          height="25"
+          width="25"
+          color="white"
+          ariaLabel="tail-spin-loading"
+          radius="1"
+          wrapperStyle={{}}
+          wrapperClass="spinner"
+          visible={loading}
+        />
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={onSubmit}>
@@ -75,9 +111,7 @@ const LoginPage: React.FunctionComponent = () => {
           required
         ></input>
       </div>
-      <button className="form-button" type="submit">
-        Anmelden
-      </button>
+      {loginButton}
       <p id="error-message">{errorMessage}</p>
     </form>
   );
