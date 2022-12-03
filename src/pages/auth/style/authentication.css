@@ -11097,6 +11097,9 @@ form .form-button:hover {
 form .form-button:active {
   background-color: #18939e;
 }
+form .form-button .spinner {
+  padding-top: 5px;
+}
 
 .divider {
   top: 50px;
@@ -11150,6 +11153,18 @@ form .form-button:active {
 .input-field input:placeholder-shown {
   line-height: 1;
   font-size: 0.9rem;
+}
+
+.reg-err {
+  color: red;
+  font-size: 0.7rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-width: 500px;
+  width: 100%;
+  padding-left: 1.1rem;
+  margin-bottom: 0;
 }
 
 #error-message {

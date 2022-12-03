@@ -3,61 +3,89 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { TailSpin } from "react-loader-spinner";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage: React.FunctionComponent = () => {
+  // Hooks
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
+  // Routing
+  const navigate = useNavigate();
+
+  // Functions
+
+  // TODO: emailValid and passwordValid are unnecessary when the firebase-service of the login is done!
+  const emailValid = (emailInput: string): boolean => {
+    const emailRegExp: RegExp =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g;
+    return emailRegExp.test(emailInput);
+  };
+
+  const passwordValid = (passwordInput: string): boolean => {
+    const passwordRedExp: RegExp = /^[a-zA-Z0-9]{6,}$/g;
+    return passwordRedExp.test(passwordInput);
+  };
+
+  /**
+   * Listener function of an email input.
+   * Everytime when the user types, the email state will be updated.
+   * @param event - listener event of an HTMLInputElement.
+   */
   const handleChangeEmailInput = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setEmail(event.target.value);
   };
 
+  /**
+   * Listener function of an password input.
+   * Everytime when the user types, the password state will be updated.
+   * @param event - listener event of an HTMLInputElement.
+   */
   const handleChangePasswordInput = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setPassword(event.target.value);
   };
 
+  /**
+   * Signes in a  user with his entries in the database.
+   * This function will be triggered when the user clicks on the login-form-button.
+   * @param event - Formevent of the login button of the login form.
+   */
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // TODO: implementation of the login logic
 
-    if(validEmail(email) && validPassword(password)) {
+    if (emailValid(email) && passwordValid(password)) {
       setLoading(true);
       setTimeout(() => {
         console.log("Email: " + email);
         console.log("Password: " + password);
         setLoading(false);
+        navigate("/home");
       }, 3000);
     }
 
-    validEmail(email) && validPassword(password)
+    emailValid(email) && passwordValid(password)
       ? setErrorMessage("")
       : setErrorMessage("Das Passwort oder die Email ist falsch");
 
-    resetStates();
+    resetUserInputs();
   };
 
-  const resetStates = () => {
+  /**
+   * Resets the userinputs of the login form.
+   */
+  const resetUserInputs = () => {
     setEmail("");
     setPassword("");
   };
 
-  const validEmail = (emailInput: string): boolean => {
-    const emailRegExp: RegExp =
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g;
-    return emailRegExp.test(emailInput);
-  };
-
-  const validPassword = (passwordInput: string): boolean => {
-    const passwordRedExp: RegExp = /^[a-zA-Z0-9]{6,}$/g;
-    return passwordRedExp.test(passwordInput);
-  };
-
+  // Conditional rendering
   let loginButton;
 
   if (!loading) {
@@ -85,7 +113,6 @@ const LoginPage: React.FunctionComponent = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      
       <div className="input-field">
         <i className="form-icons">
           <FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon>
