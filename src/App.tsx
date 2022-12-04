@@ -1,7 +1,6 @@
 import React from "react";
-import "./styles/App.css";
+import "./styles/App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import RegistrationPage from "./pages/auth/registration/Registration";
 import HomePage from "./pages/home/Home";
 import AuthenticationPage from "./pages/auth/Authentication";
 

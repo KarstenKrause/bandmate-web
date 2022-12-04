@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { faApple, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LoginPage from "./login/Login";
-import "./style/authentication.css";
+import "./style/authentication.scss";
 import RegistrationModal from "./registration/Registration";
 
 interface IAuthPageProps {}
