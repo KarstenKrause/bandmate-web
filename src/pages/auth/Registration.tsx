@@ -186,7 +186,7 @@ const RegistrationModal: React.FunctionComponent<RegistrationModalProps> = (
               </i>
 
               <input
-                placeholder="Nutzername"
+                placeholder="Benutzername"
                 value={username}
                 onChange={handleChangeUsernameInput}
                 required
