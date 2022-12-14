@@ -115,7 +115,7 @@ const LoginPage: React.FunctionComponent = () => {
     <form onSubmit={onSubmit}>
       <div className="input-field">
         <i className="form-icons">
-          <FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon>
+          <FontAwesomeIcon icon={faEnvelope} />
         </i>
 
         <input
@@ -127,7 +127,7 @@ const LoginPage: React.FunctionComponent = () => {
       </div>
       <div className="input-field">
         <i className="form-icons">
-          <FontAwesomeIcon icon={faLock}></FontAwesomeIcon>
+          <FontAwesomeIcon icon={faLock} />
         </i>
 
         <input

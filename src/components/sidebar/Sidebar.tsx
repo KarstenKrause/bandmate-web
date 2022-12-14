@@ -1,35 +1,62 @@
+import { faHouse, faMagnifyingGlass, faMessage, faPlusCircle, faUser } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { Navbar } from "react-bootstrap";
-import Nav from "react-bootstrap/Nav";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./Sidebar.scss";
 
 interface SidebarProps {}
 
-const Sidebar: React.FunctionComponent<SidebarProps> = () => {
+const Sidebar: React.FunctionComponent<SidebarProps> = (children) => {
+const menuItems = [
+  {
+    path: "/",
+    name: "Startseite",
+    icon: <FontAwesomeIcon icon={faHouse} />,
+  },
+
+  {
+    path: "/add_post",
+    name: "Beitrag erstellen",
+    icon: <FontAwesomeIcon icon={faPlusCircle} />,
+  },
+
+  {
+    path: "/search",
+    name: "Suche",
+    icon: <FontAwesomeIcon icon={faMagnifyingGlass} />,
+  },
+
+  {
+    path: "/profile",
+    name: "Profil",
+    icon: <FontAwesomeIcon icon={faUser} />,
+  },
+
+  {
+    path: "/messages",
+    name: "Nachrichten",
+    icon: <FontAwesomeIcon icon={faMessage} />,
+  },
+
+];
+
   return (
-    <Navbar>
-      <Nav defaultActiveKey="Startseite" className="sidebar">
-        <Nav.Link eventKey="Startseite" as={Link} to="/">
-          Startseite
-        </Nav.Link>
-        <Nav.Link eventKey="Beitrag erstellen" as={Link} to="/postcreation">
-          Link
-        </Nav.Link>
-        <Nav.Link eventKey="Suchen" as={Link} to="/search">
-          Suchen
-        </Nav.Link>
-        <Nav.Link eventKey="Profil" as={Link} to="/profile">
-          Profil
-        </Nav.Link>
-        <Nav.Link eventKey="Nachrichten" as={Link} to="/messenger">
-          Nachrichten
-        </Nav.Link>
-        <Nav.Link eventKey="Logout" as={Link} to="/auth">
-          Logout
-        </Nav.Link>
-      </Nav>
-    </Navbar>
+    <div className="sidebar-container">
+      <div className="sidebar">
+        <div className="top-section">
+          <h1 className="logo">Bandmate</h1>
+        </div>
+        {
+          menuItems.map((item, index) => (
+            <NavLink to={item.path} key={index} className="link" aria-activedescendant="active">
+              <div className="menu-icon">{item.icon}</div>
+              <div className="link-text">{item.name}</div>
+            </NavLink>
+          ))
+        }
+      </div>
+      
+    </div>
   );
 };
 

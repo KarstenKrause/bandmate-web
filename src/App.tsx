@@ -18,10 +18,10 @@ const App: React.FunctionComponent<IApplicationProps> = (props) => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/auth" element={<AuthenticationPage />} />
-        <Route path="/postcreation" element={<PostCreationPage />} />
-        <Route path="/search" element={<SearchPage/>} />
+        <Route path="/add_post" element={<PostCreationPage />} />
+        <Route path="/search" element={<SearchPage />} />
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/messenger" element={<MessengerPage />} />
+        <Route path="/messages" element={<MessengerPage />} />
       </Routes>
     </BrowserRouter>
   );
