@@ -1,10 +1,15 @@
-* {
-  margin: 0;
-  padding: 0;
-  text-decoration: none;
+
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  margin-right: 1rem;
+  padding-left: 2rem;
 }
 
-.sidebar-container {
-  display: flex;
-  
+.link {
+  text-decoration: none;
 }
