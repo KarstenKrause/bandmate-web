@@ -1,4 +1,3 @@
-
 import React, { useMemo } from "react";
 import { Link, matchPath, NavLink, useLocation } from "react-router-dom";
 import "./Sidebar.scss";
@@ -27,10 +26,8 @@ const Sidebar: React.FunctionComponent<SidebarProps> = () => {
           className="link"
           aria-activedescendant="active"
         >
-          <div>
-            <span className="menu-icon">{item.icon}</span>
-            <span className="link-text">{item.name}</span>
-          </div>
+          <div className="menu-icon"> {item.icon}</div>
+          <div className="menu-text">{item.name}</div>
         </NavLink>
       ))}
     </div>

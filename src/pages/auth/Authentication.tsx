@@ -21,7 +21,7 @@ const AuthenticationPage: React.FunctionComponent<IAuthPageProps> = (props) => {
   };
 
   return (
-    <main>
+    <div className="auth-content">
       <div className="container">
         <aside>
           <div className="content-container">
@@ -57,7 +57,7 @@ const AuthenticationPage: React.FunctionComponent<IAuthPageProps> = (props) => {
           ></RegistrationModal>
         </div>
       </div>
-    </main>
+    </div>
   );
 };
 
