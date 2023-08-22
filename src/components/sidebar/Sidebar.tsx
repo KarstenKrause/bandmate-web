@@ -4,7 +4,7 @@ import "./Sidebar.scss";
 import "./Routes";
 import { routes, SidebarNavItem, sidebarNavItems } from "./Routes";
 
-interface SidebarProps {}
+interface SidebarProps { }
 
 const Sidebar: React.FunctionComponent<SidebarProps> = () => {
   const menuItems: SidebarNavItem[] = sidebarNavItems;
