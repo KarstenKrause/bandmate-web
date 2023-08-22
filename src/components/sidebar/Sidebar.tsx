@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { Link, matchPath, NavLink, useLocation } from "react-router-dom";
+import { matchPath, NavLink, useLocation } from "react-router-dom";
 import "./Sidebar.scss";
 import "./Routes";
 import { routes, SidebarNavItem, sidebarNavItems } from "./Routes";
@@ -17,14 +17,14 @@ const Sidebar: React.FunctionComponent<SidebarProps> = () => {
   return (
     <div className="sidebar">
       <div className="top-section">
-        <h1 className="logo">Bandmate</h1>
+        <h2 className="logo">Bandmate</h2>
       </div>
       {menuItems.map((item, index) => (
         <NavLink
           to={item.path}
           key={index}
-          className="link"
-          aria-activedescendant="active"
+          className={`link ${currentRoute && currentRoute.path === item.path ? "active" : ""}`}
+          aria-activedescendant={`link ${currentRoute && currentRoute.path === item.path ? "active" : ""}`}
         >
           <div className="menu-icon"> {item.icon}</div>
           <div className="menu-text">{item.name}</div>

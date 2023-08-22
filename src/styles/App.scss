@@ -1,6 +1,12 @@
 .main-container {
     display: flex;
     justify-content: flex-start;
-    background-color: rgb(242, 242, 242);
+    
 }
 
+.page-container {
+    padding-left: 2rem;
+    background-color: rgb(242, 242, 242);
+    width: 100%;
+
+}
