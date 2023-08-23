@@ -1,34 +1,6 @@
-@import "../../../../node_modules/bootstrap/scss/bootstrap.scss";
+//@import "../../../../node_modules/bootstrap/scss/bootstrap.scss";
 
-$margin: 2rem;
-$screen-small: 576px;
-$screen-mid: 768px;
-$screen-normal: 992px;
-$screen-large: 1200px;
-
-@mixin small {
-  @media (max-width: #{$screen-mid}) {
-    @content;
-  }
-}
-
-@mixin mid {
-  @media (min-width: #{$screen-mid}) {
-    @content;
-  }
-}
-
-@mixin normal {
-  @media (min-width: #{$screen-normal}) {
-    @content;
-  }
-}
-
-@mixin large {
-  @media (min-width: #{$screen-large}) {
-    @content;
-  }
-}
+@import "../../../styles/main.scss";
 
 .auth-content {
   display: flex;
@@ -44,19 +16,19 @@ $screen-large: 1200px;
     width: 100%;
     max-width: 100rem;
 
-    @include small {
+    @include max-small-screen {
       flex-direction: column;
     }
 
-    @include mid {
+    @include max-mid-screen {
       flex-direction: column;
     }
 
-    @include normal {
+    @include min-normal-screen {
       flex-direction: row;
     }
 
-    @include large {
+    @include min-large-screen {
       flex-direction: row;
     }
 
@@ -74,19 +46,19 @@ $screen-large: 1200px;
       .content-container {
         position: relative;
         top: 25%;
-        @include small {
+        @include max-small-screen {
           text-align: center;
         }
 
-        @include mid {
+        @include max-mid-screen {
           text-align: center;
         }
 
-        @include normal {
+        @include min-normal-screen {
           text-align: left;
         }
 
-        @include large {
+        @include min-large-screen {
           text-align: left;
         }
       }

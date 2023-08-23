@@ -37,6 +37,9 @@ const App: React.FunctionComponent<IApplicationProps> = (props) => {
     <BrowserRouter>
       <Routes>
         <Route path="/auth" element={<AuthenticationPage />} />
+        <Route path="/"
+          element={<Navigate to="/auth" />}
+        />
       </Routes>
     </BrowserRouter>
   );
